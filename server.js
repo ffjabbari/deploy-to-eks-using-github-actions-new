@@ -19,13 +19,13 @@ const ENV = 'DEV';
 const app = express();
 app.get('/', (req, res) => {
   res.statusCode = 200;
-  const msg = 'Hello from Fred Jabbari to Voyager team....x';
+  const msg = 'Hello from Fred Jabbari to Voyager team....';
   res.send(getPage(msg));
 });
 
 app.get('/test', (req, res) => {
   res.statusCode = 200;
-  const msg = 'Hello from /test Node Fred Jabbari!!!!.x';
+  const msg = 'Hello from /test Node Fred Jabbari!!!!';
   res.send(getPage(msg));
 });
 
@@ -82,7 +82,7 @@ function getPage(message) {
     + "\n"
     + "<div class=\"bgimg\">\n"
     + "  <div class=\"topleft\">\n"
-    + "    <p>ENVIRONMENT: " + ENV + "</p>\n"
+    + "    <p>ENVIRONMENTT: " + ENV + "</p>\n"
     + "  </div>\n"
     + "  <div class=\"middle\">\n"
     + "    <h1>Host/container name</h1>\n"
