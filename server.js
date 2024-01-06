@@ -19,7 +19,7 @@ const ENV = 'DEV';
 const app = express();
 app.get('/', (req, res) => {
   res.statusCode = 200;
-  const msg = 'Hello from Fred Jabbari to Voyager team';
+  const msg = 'Hello from Fred Jabbari to Voyager team...';
   res.send(getPage(msg));
 });
 
