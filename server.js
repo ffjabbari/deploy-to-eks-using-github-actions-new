@@ -19,13 +19,13 @@ const ENV = 'DEV';
 const app = express();
 app.get('/', (req, res) => {
   res.statusCode = 200;
-  const msg = 'Hello from Fred Jabbari to Voyager team....';
+  const msg = 'Hello from Fred Jabbari to Voyager team....x';
   res.send(getPage(msg));
 });
 
 app.get('/test', (req, res) => {
   res.statusCode = 200;
-  const msg = 'Hello from /test Node Fred Jabbari!!!!';
+  const msg = 'Hello from /test Node Fred Jabbari!!!!.x';
   res.send(getPage(msg));
 });
 
