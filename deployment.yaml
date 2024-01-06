@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: configservice02
-          image: 636090713215.dkr.ecr.us-east-1.amazonaws.com/configservice02:1.1
+          image: 636090713215.dkr.ecr.us-east-1.amazonaws.com/configservice02:1.3
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
