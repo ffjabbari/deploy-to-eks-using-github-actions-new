@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: primuslearning
+  name: configservice02
   labels:
-    app: primuslearning
+    app: configservice02
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: primuslearning
+      app: configservice02
   template:
     metadata:
       labels:
-        app: primuslearning
+        app: configservice02
     spec:
       containers:
-        - name: primuslearning
-          image: 636090713215.dkr.ecr.us-east-1.amazonaws.com/primuslearning:1.1
+        - name: configservice02
+          image: 636090713215.dkr.ecr.us-east-1.amazonaws.com/configservice02:1.1
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

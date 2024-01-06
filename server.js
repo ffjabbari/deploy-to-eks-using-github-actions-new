@@ -12,20 +12,20 @@ const express = require('express');
 const PORT = 8080;
 const HOST = '0.0.0.0';
 const OS = require('os');
-const ENV = 'DEV';
+const ENV = 'Sandbox';
 
 
 // App
 const app = express();
 app.get('/', (req, res) => {
   res.statusCode = 200;
-  const msg = 'Hello from Fred Jabbari to Voyager team....';
+  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService';
   res.send(getPage(msg));
 });
 
 app.get('/test', (req, res) => {
   res.statusCode = 200;
-  const msg = 'Hello from /test Node Fred Jabbari!!!!';
+  const msg = 'Config SVC running on K8s EKS Cluster';
   res.send(getPage(msg));
 });
 
@@ -43,12 +43,12 @@ function getPage(message) {
     + "}\n"
     + "\n"
     + ".bgimg {\n"
-    + "  background-image: url('https://www.w3schools.com/w3images/forestbridge.jpg');\n"
+    + "  background-image: url('https://www.w3schools.com/html/pic_trulli.jpg');\n"
     + "  height: 100%;\n"
     + "  background-position: center;\n"
     + "  background-size: cover;\n"
     + "  position: relative;\n"
-    + "  color: white;\n"
+    + "  color: pink;\n"
     + "  font-family: \"Courier New\", Courier, monospace;\n"
     + "  font-size: 25px;\n"
     + "}\n"
@@ -82,15 +82,15 @@ function getPage(message) {
     + "\n"
     + "<div class=\"bgimg\">\n"
     + "  <div class=\"topleft\">\n"
-    + "    <p>ENVIRONMENTT: " + ENV + "</p>\n"
+    + "    <p>ENVIRONMENT: " + ENV + "</p>\n"
     + "  </div>\n"
-    + "  <div class=\"middle\">\n"
-    + "    <h1>Host/container name</h1>\n"
+    + "  <div class=\"topleft\">\n"
+    + "    <h1>Published from EKS Cluster in AWS</h1>\n"
     + "    <hr>\n"
     + "    <p>" + OS.hostname() + "</p>\n"
     + "  </div>\n"
-    + "  <div class=\"bottomleft\">\n"
-    + "    <p>" + message + "</p>\n"
+    + "  <div class=\"middle\">\n"
+    + "    <h2><p>" + message + "</p></h2>\n"
     + "  </div>\n"
     + "</div>\n"
     + "\n"
