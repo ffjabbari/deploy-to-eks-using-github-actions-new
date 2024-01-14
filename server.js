@@ -8,7 +8,9 @@
 
 const express = require('express');
 const redis = require('redis');
-const client = redis.createClient(6379);
+const host = "master.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com";
+const port = "6379";
+const client = redis.createClient(host, port);
 (async () => {
   await client.connect();
 })();
