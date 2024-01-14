@@ -31,7 +31,7 @@ const app = express();
 app.get('/', (req, res) => {
   client.set('Name', 'FredJabbari');
   res.statusCode = 200;
-  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:v1.3';
+  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:v1.4';
   res.send(getPage(msg));
 });
 
