@@ -8,7 +8,7 @@
 
 const express = require('express');
 const redis = require('redis');
-const host = "master.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com";
+const host = "f7i-c21n-m2n-redis-001.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com";
 const port = "6379";
 const client = redis.createClient(host, port);
 (async () => {
@@ -31,7 +31,7 @@ const app = express();
 app.get('/', (req, res) => {
   client.set('Name', 'FredJabbari');
   res.statusCode = 200;
-  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:v1.4';
+  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:v1.5';
   res.send(getPage(msg));
 });
 
