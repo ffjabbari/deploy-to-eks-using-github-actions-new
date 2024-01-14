@@ -7,6 +7,15 @@
 'use strict';
 
 const express = require('express');
+const redis = require('redis');
+const client = redis.createClient(6379);
+(async () => {
+  await client.connect();
+})();
+
+client.on('error', (err) => {
+  console.log("Error " + err)
+});
 
 // Constants
 const PORT = 8080;
@@ -18,12 +27,14 @@ const ENV = 'Sandbox';
 // App
 const app = express();
 app.get('/', (req, res) => {
+  client.set('Name', 'FredJabbari');
   res.statusCode = 200;
   const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:v1.3';
   res.send(getPage(msg));
 });
 
 app.get('/test', (req, res) => {
+  client.set('Name1', 'FredJabbari1');
   res.statusCode = 200;
   const msg = 'Config SVC running on K8s EKS Cluster';
   res.send(getPage(msg));
@@ -85,7 +96,7 @@ function getPage(message) {
     + "    <p>ENVIRONMENT: " + ENV + "</p>\n"
     + "  </div>\n"
     + "  <div class=\"topleft\">\n"
-    + "    <h1>Published from EKS Cluster in AWS</h1>\n"
+    + "    <h1>Published from EKS Cluster in AWS.</h1>\n"
     + "    <hr>\n"
     + "    <p>" + OS.hostname() + "</p>\n"
     + "  </div>\n"
