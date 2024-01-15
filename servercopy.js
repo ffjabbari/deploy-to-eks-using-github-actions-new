@@ -1,9 +1,3 @@
-// before rum
-//npm install express
-
-// to run 
-// npm start
-
 const { Tedis } = require("tedis");
 // Constants
 const PORT = 8080;
