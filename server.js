@@ -120,7 +120,7 @@ app.get('/', (req, res) => {
   }, 3000);
   //******************************************* */
   res.statusCode = 200;
-  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:v1.8';
+  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:v1.9a';
   res.send(getPage(msg));
 });
 
