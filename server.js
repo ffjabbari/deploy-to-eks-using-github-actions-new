@@ -1,37 +1,23 @@
-// before rum
-//npm install express
-
-// to run 
-// npm start
-
-'use strict';
-
+const { Tedis } = require("tedis");
 const express = require('express');
-const redis = require('redis');
-const host = "f7i-c21n-m2n-redis-001.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com";
-const port = "6379";
-const client = redis.createClient(host, port);
-(async () => {
-  await client.connect();
-})();
-
-client.on('error', (err) => {
-  console.log("Error " + err)
-});
-
 // Constants
 const PORT = 8080;
 const HOST = '0.0.0.0';
 const OS = require('os');
-const ENV = 'Sandbox';
+const ENV = 'DEV';
 
 
-// App
 const app = express();
+const client = new Tedis({
+  port: 6379,
+  host: "127.0.0.1",
+});
+const host = "f7i-c21n-m2n-redis-001.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com";
+const port = "6379";
+// App
 app.get('/', (req, res) => {
-  client.set('Name', 'FredJabbari');
   res.statusCode = 200;
-  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:v1.5';
+  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:v1.6';
   res.send(getPage(msg));
 });
 
