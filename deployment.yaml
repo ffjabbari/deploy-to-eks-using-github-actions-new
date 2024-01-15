@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: configservice02
+  name: configservice04
   labels:
-    app: configservice02
+    app: configservice04
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: configservice02
+      app: configservice04
   template:
     metadata:
       labels:
-        app: configservice02
+        app: configservice04
     spec:
       containers:
-        - name: configservice02
-          image: 636090713215.dkr.ecr.us-east-1.amazonaws.com/configservice02:1.5
+        - name: configservice04
+          image: 636090713215.dkr.ecr.us-east-1.amazonaws.com/configservice04:1.5
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

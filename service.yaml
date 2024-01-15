@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: configservice02
+  name: configservice04
 spec:
   selector:
-    app: configservice02
+    app: configservice04
   ports:
     - protocol: TCP
       port: 80
