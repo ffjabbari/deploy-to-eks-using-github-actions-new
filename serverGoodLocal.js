@@ -10,115 +10,12 @@ const ENV = 'DEV';
 const app = express();
 const client = new Tedis({
   port: 6379,
-  //host: "127.0.0.1",
   host: "master.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com",
-  connectTimeout: 17000,
-  maxRetriesPerRequest: 4,
-  retryStrategy: (times) => Math.min(times * 30, 1000),
-  reconnectOnError: (error)  => {
-         const targetErrors = [/READONLY/, /ETIMEDOUT/];
-         return targetErrors.some((targetError) => targetError.test(error.message));
- }
-  //port: 6379,
-  //host: "master.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com",
   // host: "f7i-c21n-m2n-redis-001.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com",
   // host: "127.0.0.1",
 });
 // App
 app.get('/', (req, res) => {
-  //******************************************* */
-  setTimeout(async () => {
-    let res;
-    /**
-     * base
-     */
-    res = await client.command("FLUSHDB");
-    console.log(res);
-    // "OK"
-    res = await client.command("SET", "key1", "Hello");
-    console.log(res);
-    // "OK"
-    res = await client.command("SET", "key2", "World");
-    console.log(res);
-    // "OK"
-  
-    /**
-     * key
-     */
-    res = await client.keys("*");
-    console.log(res);
-    // ["key2","key1"];
-    res = await client.del("key1");
-    console.log(res);
-    // 1
-  
-    /**
-     * string
-     */
-    res = await client.set("mystring", "hello");
-    console.log(res);
-    // "OK"
-    res = await client.get("mystring");
-    console.log(res);
-    // "hello"
-  
-    /**
-     * hash
-     */
-    res = await client.hmset("myhash", {
-      name: "tedis",
-      age: 18
-    });
-    console.log(res);
-    // "OK"
-    res = await client.hgetall("myhash");
-    console.log(res);
-    // {
-    //   "name": "tedis",
-    //   "age": "18"
-    // }
-  
-    /**
-     * list
-     */
-    res = await client.lpush("mylist", "hello", "a", "b", "c", "d", 1, 2, 3, 4);
-    console.log(res);
-    // 9
-    res = await client.llen("mylist");
-    console.log(res);
-    // 9
-  
-    /**
-     * set
-     */
-    res = await client.sadd("myset", "hello");
-    console.log(res);
-    // 1
-    res = await client.sadd("myset", "tedis");
-    console.log(res);
-    // 1
-    res = await client.scard("myset");
-    console.log(res);
-    // 2
-  
-    /**
-     * zset
-     */
-    res = await client.zadd("myzset", {
-      one: 1,
-      two: 2,
-      three: 3
-    });
-    console.log(res);
-    // 3
-    res = await client.zcard("myzset");
-    console.log(res);
-    // 3
-  
-    // close
-    client.close();
-  }, 3000);
-  //******************************************* */
   res.statusCode = 200;
   const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:v1.8';
   res.send(getPage(msg));
@@ -127,7 +24,7 @@ app.get('/', (req, res) => {
 app.get('/test', (req, res) => {
   client.set('Name1', 'FredJabbari1');
   res.statusCode = 200;
-  const msg = 'Config SVC running on K8s EKS Cluster1';
+  const msg = 'Config SVC running on K8s EKS Cluster';
   res.send(getPage(msg));
 });
 

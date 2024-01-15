@@ -10,19 +10,7 @@ const ENV = 'DEV';
 const app = express();
 const client = new Tedis({
   port: 6379,
-  //host: "127.0.0.1",
-  host: "master.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com",
-  connectTimeout: 17000,
-  maxRetriesPerRequest: 4,
-  retryStrategy: (times) => Math.min(times * 30, 1000),
-  reconnectOnError: (error)  => {
-         const targetErrors = [/READONLY/, /ETIMEDOUT/];
-         return targetErrors.some((targetError) => targetError.test(error.message));
- }
-  //port: 6379,
-  //host: "master.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com",
-  // host: "f7i-c21n-m2n-redis-001.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com",
-  // host: "127.0.0.1",
+  host: "127.0.0.1",
 });
 // App
 app.get('/', (req, res) => {
@@ -126,6 +114,8 @@ app.get('/', (req, res) => {
 
 app.get('/test', (req, res) => {
   client.set('Name1', 'FredJabbari1');
+  var respx = client.get('Name1');
+  console.log('xxx:===>', respx);
   res.statusCode = 200;
   const msg = 'Config SVC running on K8s EKS Cluster1';
   res.send(getPage(msg));
@@ -187,7 +177,7 @@ function getPage(message) {
     + "    <p>ENVIRONMENT: " + ENV + "</p>\n"
     + "  </div>\n"
     + "  <div class=\"topleft\">\n"
-    + "    <h1>Published from EKS Cluster in AWS.</h1>\n"
+    + "    <h1>Published from EKS Cluster in AWS..</h1>\n"
     + "    <hr>\n"
     + "    <p>" + OS.hostname() + "</p>\n"
     + "  </div>\n"
