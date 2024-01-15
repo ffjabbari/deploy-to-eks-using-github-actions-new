@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: configservice04
-          image: 636090713215.dkr.ecr.us-east-1.amazonaws.com/configservice04:1.6
+          image: 636090713215.dkr.ecr.us-east-1.amazonaws.com/configservice04:1.7
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
