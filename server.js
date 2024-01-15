@@ -10,13 +10,14 @@ const ENV = 'DEV';
 const app = express();
 const client = new Tedis({
   port: 6379,
-  host: "f7i-c21n-m2n-redis-001.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com",
+  host: "master.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com",
+  // host: "f7i-c21n-m2n-redis-001.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com",
   // host: "127.0.0.1",
 });
 // App
 app.get('/', (req, res) => {
   res.statusCode = 200;
-  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:v1.7';
+  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:v1.8';
   res.send(getPage(msg));
 });
 
