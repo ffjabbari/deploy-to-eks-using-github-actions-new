@@ -14,8 +14,8 @@ const ENV = 'DEV';
 const app = express();
 
 
-var redis = new RedisClient.createClient("6379", "127.0.0.1", { no_ready_check: true });
-//var redis = new RedisClient.createClient("6379", "f7i-c21n-m2n-redis-001.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com", { no_ready_check: true });
+//var redis = new RedisClient.createClient("6379", "127.0.0.1", { no_ready_check: true });
+var redis = new RedisClient.createClient("6379", "f7i-c21n-m2n-redis-001.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com", { no_ready_check: true });
 
 //connect to redis
 redis.connect().then(async () => {
@@ -56,7 +56,7 @@ app.get('/', (req, res) => {
   getKey("key111");
   
   res.statusCode = 200;
-  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:v1.19';
+  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:vv1.20';
   res.send(getPage(msg));
 });
 
