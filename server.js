@@ -46,9 +46,9 @@ redis.connect().then(async () => {
 // App
 app.get('/', (req, res) => {
 
-  console.log("===========>0 Version 1.15 running...");
-  console.log("===========>0 Version 1.15 running...");
-  console.log("===========>0 Version 1.15 running...");
+  console.log("===========>0 Version xx1.15 running...");
+  console.log("===========>0 Version xx1.15 running...");
+  console.log("===========>0 Version xx1.15 running...");
    // //******************************************* */
   setTimeout(async () => {
     let res;
@@ -81,18 +81,18 @@ app.get('/', (req, res) => {
 
 //******************************************* */
 //check the functioning
-  console.log("===========>01 Version 1.15 running...");
+  console.log("===========>01 Version xx1.15 running...");
   redis.set("framework2", "AngularJS2", function (err, reply) {
-    console.log("===========>1 Version 1.15 running...");
+    console.log("===========>1 Version xx1.15 running...");
     console.log("redis.set2 " , reply);
-    console.log("===========>2 Version 1.15 running...");
+    console.log("===========>2 Version xx1.15 running...");
   });
 
-  console.log("===========>02 Version 1.15 running...");
+  console.log("===========>02 Version xx1.15 running...");
   redis.get("framework2", function (err, reply) {
-    console.log("===========>3 Version 1.15 running...");
+    console.log("===========>3 Version xx1.15 running...");
     console.log("redis.get2 ", reply);
-    console.log("===========>4 Version 1.15 running...");
+    console.log("===========>4 Version xx1.15 running...");
   }); 
 //******************************************* */
   // //******************************************* */
@@ -190,7 +190,7 @@ app.get('/', (req, res) => {
   //******************************************* */
 
   res.statusCode = 200;
-  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:v1.15';
+  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:v1.17';
   res.send(getPage(msg));
 });
 
