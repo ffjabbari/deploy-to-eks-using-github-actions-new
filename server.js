@@ -46,6 +46,10 @@ var redis = new RedisClustr({
 // App
 app.get('/', (req, res) => {
 
+  console.log("===========> Version 1.15 running...");
+  console.log("===========> Version 1.15 running...");
+  console.log("===========> Version 1.15 running...");
+
 //******************************************* */
 //check the functioning
 redis.set("framework2", "AngularJS2", function (err, reply) {
@@ -150,7 +154,7 @@ redis.get("framework2", function (err, reply) {
   // }, 3000);
   //******************************************* */
   res.statusCode = 200;
-  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:v1.14';
+  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:v1.15';
   res.send(getPage(msg));
 });
 
@@ -216,7 +220,7 @@ function getPage(message) {
     + "    <p>ENVIRONMENT: " + ENV + "</p>\n"
     + "  </div>\n"
     + "  <div class=\"topleft\">\n"
-    + "    <h1>Published from EKS Cluster in 1.13</h1>\n"
+    + "    <h1>Published from EKS Cluster in 1.15</h1>\n"
     + "    <hr>\n"
     + "    <p>" + OS.hostname() + "</p>\n"
     + "  </div>\n"
