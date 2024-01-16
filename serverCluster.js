@@ -14,17 +14,27 @@ const ENV = 'DEV';
 const app = express();
 
 
-//var redis = new RedisClient.createClient("6379", "127.0.0.1", { no_ready_check: true });
-var redis = new RedisClient.createClient("6379", "f7i-c21n-m2n-redis-001.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com", { no_ready_check: true });
+var redis = new RedisClustr({
+  servers: [
+      {
+          host: "f7i-c21n-m2n-redis-001.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com",
+          port: "6379" 
+      }
+  ],
+  createClient: function (port, host) {
+      // this is the default behaviour
+      //return RedisClient.createClient(port, host);
+      //return RedisClient.createClient("redis://f7i-c21n-m2n-redis-001.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com:6379");
 
-//connect to redis
-redis.connect().then(async () => {
-  redis.on('error', err => {
-    console.log('Error ' + err);
-  });
-  console.log("===> Connected To Elasticache Successfully...");
+      console.log("===========>00 Version 1.15 running...");
+      return RedisClient.createClient("redis://127.0.0.1:6379");
+  }
 });
 
+//connect to redis
+redis.on("connect", function () {
+  console.log("connected Successfully To Redis");
+});
 
 
 //   port: 6379,
@@ -46,53 +56,24 @@ redis.connect().then(async () => {
 // App
 app.get('/', (req, res) => {
 
-  console.log("===========>0 Version 1.15 running...");
-  console.log("===========>0 Version 1.15 running...");
-  console.log("===========>0 Version 1.15 running...");
-   // //******************************************* */
-  setTimeout(async () => {
-    let res;
-    /**
-     * base
-     */
-    res = await redis.command("FLUSHDB");
-    console.log(res);
-    // "OK"
-    res = await redis.command("SET", "key1", "Hello");
-    console.log(res);
-    // "OK"
-    res = await redis.command("SET", "key2", "World");
-    console.log(res);
-    // "OK"
-  
-    /**
-     * key
-     */
-    res = await redis.keys("*");
-    console.log(res);
-    // ["key2","key1"];
-    res = await redis.del("key1");
-    console.log(res);
-    // 1
-  }, 3000);
-  
-  //******************************************* */ 
-  
+  console.log("===========>0 Version v16 running...");
+  console.log("===========>0 Version v16 running...");
+  console.log("===========>0 Version v16 running...");
 
 //******************************************* */
 //check the functioning
-  console.log("===========>01 Version 1.15 running...");
+  console.log("===========>01 Version v16 running...");
   redis.set("framework2", "AngularJS2", function (err, reply) {
-    console.log("===========>1 Version 1.15 running...");
+    console.log("===========>1 Version v16 running...");
     console.log("redis.set2 " , reply);
-    console.log("===========>2 Version 1.15 running...");
+    console.log("===========>2 Version v16 running...");
   });
 
-  console.log("===========>02 Version 1.15 running...");
+  console.log("===========>02 Version v16 running...");
   redis.get("framework2", function (err, reply) {
-    console.log("===========>3 Version 1.15 running...");
+    console.log("===========>3 Version v16 running...");
     console.log("redis.get2 ", reply);
-    console.log("===========>4 Version 1.15 running...");
+    console.log("===========>4 Version v16 running...");
   }); 
 //******************************************* */
   // //******************************************* */
@@ -190,7 +171,7 @@ app.get('/', (req, res) => {
   //******************************************* */
 
   res.statusCode = 200;
-  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:v1.15';
+  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:v16';
   res.send(getPage(msg));
 });
 
@@ -256,7 +237,7 @@ function getPage(message) {
     + "    <p>ENVIRONMENT: " + ENV + "</p>\n"
     + "  </div>\n"
     + "  <div class=\"topleft\">\n"
-    + "    <h1>Published from EKS Cluster in 1.15</h1>\n"
+    + "    <h1>Published from EKS Cluster in v1.16</h1>\n"
     + "    <hr>\n"
     + "    <p>" + OS.hostname() + "</p>\n"
     + "  </div>\n"
