@@ -11,7 +11,8 @@ const app = express();
 const client = new Tedis({
   port: 6379,
   //host: "127.0.0.1",
-  host: "master.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com",
+  //host: "master.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com",
+  host: "f7i-c21n-m2n-redis-001.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com",
   connectTimeout: 17000,
   maxRetriesPerRequest: 4,
   retryStrategy: (times) => Math.min(times * 30, 1000),
@@ -120,7 +121,7 @@ app.get('/', (req, res) => {
   }, 3000);
   //******************************************* */
   res.statusCode = 200;
-  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:v1.12';
+  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:v1.13';
   res.send(getPage(msg));
 });
 
@@ -187,7 +188,7 @@ function getPage(message) {
     + "    <p>ENVIRONMENT: " + ENV + "</p>\n"
     + "  </div>\n"
     + "  <div class=\"topleft\">\n"
-    + "    <h1>Published from EKS Cluster in 1.12</h1>\n"
+    + "    <h1>Published from EKS Cluster in 1.13</h1>\n"
     + "    <hr>\n"
     + "    <p>" + OS.hostname() + "</p>\n"
     + "  </div>\n"
