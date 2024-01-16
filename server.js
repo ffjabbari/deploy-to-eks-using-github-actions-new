@@ -1,6 +1,8 @@
 //const { redis } = require("redis");
 //import { createClient } from "redis";
 //let { redis } = require("redis");
+const util = require('util');
+
 var RedisClustr = require('redis-clustr');
 var RedisClient = require('redis');
 //var config = require("./config.json");
@@ -13,50 +15,77 @@ const ENV = 'DEV';
 
 const app = express();
 
-
-//var redis = new RedisClient.createClient("6379", "127.0.0.1", { no_ready_check: true });
-var redis = new RedisClient.createClient("6379", "f7i-c21n-m2n-redis-001.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com", { no_ready_check: true });
+var redis;
+//redis = new RedisClient.createClient("6379", "127.0.0.1", { no_ready_check: true });
+// redis = new RedisClient.createClient("6379", "f7i-c21n-m2n-redis-001.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com", { no_ready_check: true });
 
 //connect to redis
-redis.connect().then(async () => {
-  redis.on('error', err => {
-    console.log('Error ' + err);
+// redis.connect().then(async () => {
+//   redis.on('error', err => {
+//     console.log('Error ' + err);
+//   });
+//   console.log("===> Connected To Elasticache Successfully...");
+// });
+
+(async () => {
+  //redis = new RedisClient.createClient("6379", "127.0.0.1", { no_ready_check: true });
+  redis = new RedisClient.createClient({
+    legacyMode: true,
+    url: "redis://f7i-c21n-m2n-redis-001.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com:6379"
+    //url: "redis://127.0.0.1:6379"
   });
-  console.log("===> Connected To Elasticache Successfully...");
-});
+  redis.get = util.promisify(redis.get);
+  // redis = new RedisClient.createClient({
+  //   legacyMode: true,
+  //   url: "redis://f7i-c21n-m2n-redis-001.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com:6379"
+  // });
+
+  await redis.connect();
+})();
 
 
 
-async function setKey(key, value) {
-  try {
-    await redis.set(key, value);
-  } catch (error) {
-    console.error('Error:', error);
-  } finally {
+// async function setKey(key, value) {
+//   try {
+//     await redis.set(key, value);
+//   } catch (error) {
+//     console.error('Error:', error);
+//   } finally {
     
-  }
-}
+//   }
+// }
 
-async function getKey(key) {
-  try {
-    const value = await redis.get(key); 
-    console.log("===> value is: ", value);
-  } catch (error) {
-    console.error('Error:', error);
-  } finally {
+// async function getKey(key) {
+//   try {
+//     const value = await redis.get(key); 
+//     console.log("===> value is: ", value);
+//   } catch (error) {
+//     console.error('Error:', error);
+//   } finally {
     
-  }
-}
+//   }
+// }
 
 // App
 app.get('/', (req, res) => {
 
   console.log("===========>0 Version xxaa.bb running...");
-  setKey("key111", "value111");
+
+  redis.set("key111", JSON.stringify({"name": "fred"}));
+  async function getKey(key) {
+    try {
+      const value = await redis.get(key); 
+      console.log("===> value is: ", value);
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      
+    }
+  }
   getKey("key111");
   
   res.statusCode = 200;
-  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:vv1.20';
+  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:vv1.21';
   res.send(getPage(msg));
 });
 
