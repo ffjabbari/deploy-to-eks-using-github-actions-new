@@ -27,7 +27,7 @@ var redis = new RedisClustr({
       //return RedisClient.createClient("redis://f7i-c21n-m2n-redis-001.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com:6379");
 
       console.log("===========>00 Version 1.15 running...");
-      return RedisClient.createClient("redis://127.0.0.1:6379");
+      return redis = new RedisClient.createClient("6379", "f7i-c21n-m2n-redis-001.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com", { no_ready_check: true });
   }
 });
 
@@ -56,24 +56,24 @@ redis.on("connect", function () {
 // App
 app.get('/', (req, res) => {
 
-  console.log("===========>0 Version v1.18 running...");
-  console.log("===========>0 Version v1.18 running...");
-  console.log("===========>0 Version v1.18 running...");
+  console.log("===========>0 Version v1.19 running...");
+  console.log("===========>0 Version v1.19 running...");
+  console.log("===========>0 Version v1.19 running...");
 
 //******************************************* */
 //check the functioning
-  console.log("===========>01 Version v1.18 running...");
+  console.log("===========>01 Version v1.19 running...");
   redis.set("framework2", "AngularJS2", function (err, reply) {
-    console.log("===========>1 Version v1.18 running...");
+    console.log("===========>1 Version v1.19 running...");
     console.log("redis.set2 " , reply);
-    console.log("===========>2 Version v1.18 running...");
+    console.log("===========>2 Version v1.19 running...");
   });
 
-  console.log("===========>02 Version v1.18 running...");
+  console.log("===========>02 Version v1.19 running...");
   redis.get("framework2", function (err, reply) {
-    console.log("===========>3 Version v1.18 running...");
+    console.log("===========>3 Version v1.19 running...");
     console.log("redis.get2 ", reply);
-    console.log("===========>4 Version v1.18 running...");
+    console.log("===========>4 Version v1.19 running...");
   }); 
 //******************************************* */
   // //******************************************* */
@@ -171,7 +171,7 @@ app.get('/', (req, res) => {
   //******************************************* */
 
   res.statusCode = 200;
-  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:v1.18';
+  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:v1.19';
   res.send(getPage(msg));
 });
 
@@ -237,7 +237,7 @@ function getPage(message) {
     + "    <p>ENVIRONMENT: " + ENV + "</p>\n"
     + "  </div>\n"
     + "  <div class=\"topleft\">\n"
-    + "    <h1>Published from EKS Cluster in v1.18</h1>\n"
+    + "    <h1>Published from EKS Cluster in v1.19</h1>\n"
     + "    <hr>\n"
     + "    <p>" + OS.hostname() + "</p>\n"
     + "  </div>\n"

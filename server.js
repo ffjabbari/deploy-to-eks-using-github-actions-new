@@ -14,8 +14,8 @@ const ENV = 'DEV';
 const app = express();
 
 
-//var redis = new RedisClient.createClient("6379", "127.0.0.1", { no_ready_check: true });
-var redis = new RedisClient.createClient("6379", "f7i-c21n-m2n-redis-001.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com", { no_ready_check: true });
+var redis = new RedisClient.createClient("6379", "127.0.0.1", { no_ready_check: true });
+//var redis = new RedisClient.createClient("6379", "f7i-c21n-m2n-redis-001.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com", { no_ready_check: true });
 
 //connect to redis
 redis.connect().then(async () => {
@@ -27,170 +27,36 @@ redis.connect().then(async () => {
 
 
 
-//   port: 6379,
-//   host: "127.0.0.1",
-  //host: "master.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com",
-//   host: "f7i-c21n-m2n-redis-001.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com",
-//   connectTimeout: 17000,
-//   maxRetriesPerRequest: 4,
-//   retryStrategy: (times) => Math.min(times * 30, 1000),
-//   reconnectOnError: (error)  => {
-//          const targetErrors = [/READONLY/, /ETIMEDOUT/];
-//          return targetErrors.some((targetError) => targetError.test(error.message));
-//  }
-  //port: 6379,
-  //host: "master.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com",
-  // host: "f7i-c21n-m2n-redis-001.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com",
-  // host: "127.0.0.1",
-// });
+async function setKey(key, value) {
+  try {
+    await redis.set(key, value);
+  } catch (error) {
+    console.error('Error:', error);
+  } finally {
+    
+  }
+}
+
+async function getKey(key) {
+  try {
+    const value = await redis.get(key); 
+    console.log("===> value is: ", value);
+  } catch (error) {
+    console.error('Error:', error);
+  } finally {
+    
+  }
+}
+
 // App
 app.get('/', (req, res) => {
 
-  console.log("===========>0 Version xx1.15 running...");
-  console.log("===========>0 Version xx1.15 running...");
-  console.log("===========>0 Version xx1.15 running...");
-   // //******************************************* */
-  setTimeout(async () => {
-    let res;
-    /**
-     * base
-     */
-    res = await redis.command("FLUSHDB");
-    console.log(res);
-    // "OK"
-    res = await redis.command("SET", "key1", "Hello");
-    console.log(res);
-    // "OK"
-    res = await redis.command("SET", "key2", "World");
-    console.log(res);
-    // "OK"
+  console.log("===========>0 Version xxaa.bb running...");
+  setKey("key111", "value111");
+  getKey("key111");
   
-    /**
-     * key
-     */
-    res = await redis.keys("*");
-    console.log(res);
-    // ["key2","key1"];
-    res = await redis.del("key1");
-    console.log(res);
-    // 1
-  }, 3000);
-  
-  //******************************************* */ 
-  
-
-//******************************************* */
-//check the functioning
-  console.log("===========>01 Version xx1.15 running...");
-  redis.set("framework2", "AngularJS2", function (err, reply) {
-    console.log("===========>1 Version xx1.15 running...");
-    console.log("redis.set2 " , reply);
-    console.log("===========>2 Version xx1.15 running...");
-  });
-
-  console.log("===========>02 Version xx1.15 running...");
-  redis.get("framework2", function (err, reply) {
-    console.log("===========>3 Version xx1.15 running...");
-    console.log("redis.get2 ", reply);
-    console.log("===========>4 Version xx1.15 running...");
-  }); 
-//******************************************* */
-  // //******************************************* */
-  // setTimeout(async () => {
-  //   let res;
-  //   /**
-  //    * base
-  //    */
-  //   res = await redis.command("FLUSHDB");
-  //   console.log(res);
-  //   // "OK"
-  //   res = await redis.command("SET", "key1", "Hello");
-  //   console.log(res);
-  //   // "OK"
-  //   res = await redis.command("SET", "key2", "World");
-  //   console.log(res);
-  //   // "OK"
-  
-  //   /**
-  //    * key
-  //    */
-  //   res = await redis.keys("*");
-  //   console.log(res);
-  //   // ["key2","key1"];
-  //   res = await redis.del("key1");
-  //   console.log(res);
-  //   // 1
-  
-  //   /**
-  //    * string
-  //    */
-  //   // res = await redis.set("mystring", "hello");
-  //   // console.log(res);
-  //   // // "OK"
-  //   // res = await redis.get("mystring");
-  //   // console.log(res);
-  //   // "hello"
-  
-  //   /**
-  //    * hash
-  //    */
-  //   // res = await redis.hmset("myhash", {
-  //   //   name: "tedis",
-  //   //   age: 18
-  //   // });
-  //   // console.log(res);
-  //   // // "OK"
-  //   // res = await redis.hgetall("myhash");
-  //   // console.log(res);
-  //   // {
-  //   //   "name": "tedis",
-  //   //   "age": "18"
-  //   // }
-  
-  //   /**
-  //    * list
-  //    */
-  //   // res = await redis.lpush("mylist", "hello", "a", "b", "c", "d", 1, 2, 3, 4);
-  //   // console.log(res);
-  //   // // 9
-  //   // res = await redis.llen("mylist");
-  //   // console.log(res);
-  //   // 9
-  
-  //   /**
-  //    * set
-  //    */
-  //   // res = await redis.sadd("myset", "hello");
-  //   // console.log(res);
-  //   // // 1
-  //   // res = await redis.sadd("myset", "tedis");
-  //   // console.log(res);
-  //   // // 1
-  //   // res = await redis.scard("myset");
-  //   // console.log(res);
-  //   // 2
-  
-  //   /**
-  //    * zset
-  //    */
-  //   // res = await redis.zadd("myzset", {
-  //   //   one: 1,
-  //   //   two: 2,
-  //   //   three: 3
-  //   // });
-  //   // console.log(res);
-  //   // // 3
-  //   // res = await redis.zcard("myzset");
-  //   // console.log(res);
-  //   // 3
-  
-  //   // close
-  //   //redis.close();
-  // }, 3000);
-  //******************************************* */
-
   res.statusCode = 200;
-  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:v1.18';
+  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:v1.19';
   res.send(getPage(msg));
 });
 
