@@ -56,24 +56,24 @@ redis.on("connect", function () {
 // App
 app.get('/', (req, res) => {
 
-  console.log("===========>0 Version vv1.23 running...");
-  console.log("===========>0 Version vv1.23 running...");
-  console.log("===========>0 Version vv1.23 running...");
+  console.log("===========>0 Version vv1.24 running...");
+  console.log("===========>0 Version vv1.24 running...");
+  console.log("===========>0 Version vv1.24 running...");
 
 //******************************************* */
 //check the functioning
-  console.log("===========>01 Version vv1.23 running...");
+  console.log("===========>01 Version vv1.24 running...");
   redis.set("framework2", "AngularJS2", function (err, reply) {
-    console.log("===========>1 Version vv1.23 running...");
+    console.log("===========>1 Version vv1.24 running...");
     console.log("redis.set2 " , reply);
-    console.log("===========>2 Version vv1.23 running...");
+    console.log("===========>2 Version vv1.24 running...");
   });
 
-  console.log("===========>02 Version vv1.23 running...");
+  console.log("===========>02 Version vv1.24 running...");
   redis.get("framework2", function (err, reply) {
-    console.log("===========>3 Version vv1.23 running...");
+    console.log("===========>3 Version vv1.24 running...");
     console.log("redis.get2 ", reply);
-    console.log("===========>4 Version vv1.23 running...");
+    console.log("===========>4 Version vv1.24 running...");
   }); 
 //******************************************* */
   // //******************************************* */
@@ -171,7 +171,7 @@ app.get('/', (req, res) => {
   //******************************************* */
 
   res.statusCode = 200;
-  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:vv1.23';
+  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:vv1.24';
   res.send(getPage(msg));
 });
 
@@ -237,7 +237,7 @@ function getPage(message) {
     + "    <p>ENVIRONMENT: " + ENV + "</p>\n"
     + "  </div>\n"
     + "  <div class=\"topleft\">\n"
-    + "    <h1>Published from EKS Cluster in vv1.23</h1>\n"
+    + "    <h1>Published from EKS Cluster in vv1.24</h1>\n"
     + "    <hr>\n"
     + "    <p>" + OS.hostname() + "</p>\n"
     + "  </div>\n"
