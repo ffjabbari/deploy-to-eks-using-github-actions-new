@@ -24,8 +24,8 @@ var redis;
   
   redis = new RedisClient.createClient({
     legacyMode: true,
-    //url: "redis://f7i-c21n-m2n-redis-001.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com:6379"
-    url: "redis://127.0.0.1:6379",
+    //url: "redis://127.0.0.1:6379",
+    url: "redis://f7i-c21n-m2n-redis-001.f7i-c21n-m2n-redis.vwfcil.use1.cache.amazonaws.com:6379",
     options: {
       redisOptions: {
           tls: {}
@@ -57,7 +57,7 @@ app.get('/', (req, res) => {
   getKey("key111");
   
   res.statusCode = 200;
-  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:vv1.22';
+  const msg = 'Rendering through K8s/EKS Cluster running from an AWS - Container Name: ConfigService:vv1.23';
   res.send(getPage(msg));
 });
 
